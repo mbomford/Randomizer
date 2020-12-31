@@ -1,0 +1,64 @@
+---
+name:  CRD
+title: Completely Randomized Design
+menuGroup: Randomization
+version: '0.3.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: trt
+      title: Factors
+      type: Variables
+      permitted: [factor, id]
+
+    - name: reps
+      title: Replicates
+      type: Integer
+      default: 4
+      min: 0
+
+    - name: col
+      title: Columns
+      type: Integer
+      default: 2
+      min: 1
+
+    - name: seed
+      title: Randomization ID
+      type: Integer
+      default: 0
+      min: 0
+
+    - name: properties
+      title: Design Properties
+      type: Bool
+      default: true
+ 
+    - name: degfree
+      title: Degrees of Freedom
+      type: Bool
+      default: true  
+
+    - name: mapGraph
+      title: Plot Map
+      type: Bool
+      default: false
+ 
+#    - name: mapText
+#      title: Plot Map (Text)
+#      type: Bool
+#      default: false  
+
+    - name: plotList
+      title: Plot List
+      type: Bool
+      default: false
+ 
+#    - name: power
+#      title: Power Analysis
+#      type: Bool
+#      default: false
+...

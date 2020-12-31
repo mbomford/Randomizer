@@ -1,0 +1,57 @@
+---
+name:  LSD
+title: Latin Square Design
+menuGroup: Randomization
+version: '0.3.0'
+jas: '1.2'
+
+options:
+    - name: data
+      type: Data
+
+    - name: trt
+      title: Factors
+      type: Variables
+      permitted: [factor, id]
+
+    - name: arrange
+      title: Arrangement
+      type: List
+      options:
+        - name: square
+          title: Square format
+        - name: separate
+          title: Separate blocks
+      default: square
+
+    - name: seed
+      title: Randomization ID
+      type: Integer
+      default: 0
+      min: 0
+
+    - name: properties
+      title: Design Properties
+      type: Bool
+      default: true
+ 
+    - name: degfree
+      title: Degrees of Freedom
+      type: Bool
+      default: true  
+
+    - name: mapGraph
+      title: Plot Map
+      type: Bool
+      default: false
+ 
+ #   - name: mapText
+ #     title: Plot Map (Text)
+ #     type: Bool
+ #     default: false  
+
+    - name: plotList
+      title: Plot List
+      type: Bool
+      default: false    
+...

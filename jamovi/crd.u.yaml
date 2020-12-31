@@ -1,0 +1,45 @@
+title: Completely Randomized Design
+name: CRD
+jus: '3.0'
+stage: 0
+compilerMode: aggressive
+children:
+  - type: VariableSupplier
+    persistentItems: false
+    stretchFactor: 1
+    children:
+      - type: TargetLayoutBox
+        label: Factors
+        children:
+          - type: VariablesListBox
+            name: trt
+            isTarget: true
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: reps
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: col
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: TextBox
+        name: seed
+        format: number
+  - type: LayoutBox
+    margin: large
+    children:
+      - type: CheckBox
+        name: properties
+      - type: CheckBox
+        name: degfree
+      - type: CheckBox
+        name: mapGraph
+      - type: CheckBox
+        name: plotList

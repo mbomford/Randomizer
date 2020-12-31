@@ -1,0 +1,63 @@
+---
+name:  RCBD
+title: Randomized Complete Block Design
+jrs:   '1.1'
+
+items:
+    - name:  properties
+      title: Design Properties
+      type:  Table
+      rows: 1
+      columns:
+        - name: Factors
+          type: integer
+        - name: Levels
+          type: integer
+        - name: Treatments
+          type: integer
+        - name: Blocks
+          type: integer
+        - name: Plots
+          type: integer
+        - name: ID
+          type: integer
+          
+    - name:  degfree
+      title: Degrees of Freedom
+      type:  Table
+      rows: 0
+      columns:
+        - name: Source
+          type: text
+        - name: DF
+          type: integer
+
+    - name: plot
+      title: Plot Map
+      type: Image
+      width:  600
+      height: 500
+      renderFun: .plot 
+      visible: false
+
+#    - name:  text
+#      title: Plot map (text)
+#      type:  Preformatted
+
+    - name:  plots
+      title: Plot list
+      type:  Table
+      visible: false
+      rows: 0
+      columns:
+        - name: Plot
+          type: integer
+        - name: Block
+          type: integer
+        - name: Column
+          type: integer
+        - name: Row
+          type: integer
+        - name: Treatment
+          type: text
+...
