@@ -21,7 +21,7 @@ options:
       min: 0
 
     - name: blockBy
-      title: Blocking
+      title: Layout
       type: List
       options:
         - name: byRow
@@ -33,33 +33,33 @@ options:
       default: byRow
 
     - name: seed
-      title: Randomization ID
+      title: Seed
       type: Integer
       default: 0
       min: 0
 
     - name: properties
-      title: Design Properties
+      title: Design properties
       type: Bool
       default: true
  
     - name: degfree
-      title: Degrees of Freedom
+      title: Degrees of freedom
       type: Bool
       default: true
 
     - name: mapGraph
-      title: Plot Map
+      title: Plot map
       type: Bool
       default: false
  
-#    - name: mapText
-#      title: Plot Map (Text)
-#      type: Bool
-#      default: false  
+    - name: legend
+      title: Map legend
+      type: Bool
+      default: false 
 
     - name: plotList
-      title: Plot List
+      title: Plot list
       type: Bool
       default: false      
 ...

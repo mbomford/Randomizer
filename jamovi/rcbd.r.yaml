@@ -19,7 +19,7 @@ items:
           type: integer
         - name: Plots
           type: integer
-        - name: ID
+        - name: Seed
           type: integer
           
     - name:  degfree
@@ -29,7 +29,7 @@ items:
       columns:
         - name: Source
           type: text
-        - name: DF
+        - name: df
           type: integer
 
     - name: plot
@@ -45,7 +45,7 @@ items:
 #      type:  Preformatted
 
     - name:  plots
-      title: Plot list
+      title: Plot List
       type:  Table
       visible: false
       rows: 0

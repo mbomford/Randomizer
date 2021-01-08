@@ -8,11 +8,12 @@ CRDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         initialize = function(
             trt = NULL,
             reps = 4,
-            col = 2,
-            seed = 0,
             properties = TRUE,
             degfree = TRUE,
+            seed = 0,
             mapGraph = FALSE,
+            legend = FALSE,
+            col = 2,
             plotList = FALSE, ...) {
 
             super$initialize(
@@ -32,16 +33,6 @@ CRDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 reps,
                 default=4,
                 min=0)
-            private$..col <- jmvcore::OptionInteger$new(
-                "col",
-                col,
-                default=2,
-                min=1)
-            private$..seed <- jmvcore::OptionInteger$new(
-                "seed",
-                seed,
-                default=0,
-                min=0)
             private$..properties <- jmvcore::OptionBool$new(
                 "properties",
                 properties,
@@ -50,10 +41,24 @@ CRDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 "degfree",
                 degfree,
                 default=TRUE)
+            private$..seed <- jmvcore::OptionInteger$new(
+                "seed",
+                seed,
+                default=0,
+                min=0)
             private$..mapGraph <- jmvcore::OptionBool$new(
                 "mapGraph",
                 mapGraph,
                 default=FALSE)
+            private$..legend <- jmvcore::OptionBool$new(
+                "legend",
+                legend,
+                default=FALSE)
+            private$..col <- jmvcore::OptionInteger$new(
+                "col",
+                col,
+                default=2,
+                min=1)
             private$..plotList <- jmvcore::OptionBool$new(
                 "plotList",
                 plotList,
@@ -61,30 +66,33 @@ CRDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
 
             self$.addOption(private$..trt)
             self$.addOption(private$..reps)
-            self$.addOption(private$..col)
-            self$.addOption(private$..seed)
             self$.addOption(private$..properties)
             self$.addOption(private$..degfree)
+            self$.addOption(private$..seed)
             self$.addOption(private$..mapGraph)
+            self$.addOption(private$..legend)
+            self$.addOption(private$..col)
             self$.addOption(private$..plotList)
         }),
     active = list(
         trt = function() private$..trt$value,
         reps = function() private$..reps$value,
-        col = function() private$..col$value,
-        seed = function() private$..seed$value,
         properties = function() private$..properties$value,
         degfree = function() private$..degfree$value,
+        seed = function() private$..seed$value,
         mapGraph = function() private$..mapGraph$value,
+        legend = function() private$..legend$value,
+        col = function() private$..col$value,
         plotList = function() private$..plotList$value),
     private = list(
         ..trt = NA,
         ..reps = NA,
-        ..col = NA,
-        ..seed = NA,
         ..properties = NA,
         ..degfree = NA,
+        ..seed = NA,
         ..mapGraph = NA,
+        ..legend = NA,
+        ..col = NA,
         ..plotList = NA)
 )
 
@@ -125,7 +133,7 @@ CRDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                         `name`="Plots", 
                         `type`="integer"),
                     list(
-                        `name`="ID", 
+                        `name`="Seed", 
                         `type`="integer"))))
             self$add(jmvcore::Table$new(
                 options=options,
@@ -138,7 +146,7 @@ CRDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                         `name`="Source", 
                         `type`="text"),
                     list(
-                        `name`="DF", 
+                        `name`="df", 
                         `type`="integer"))))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -151,7 +159,7 @@ CRDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$add(jmvcore::Table$new(
                 options=options,
                 name="plots",
-                title="Plot list",
+                title="Plot List",
                 visible=FALSE,
                 rows=0,
                 columns=list(
@@ -199,11 +207,12 @@ CRDBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param data .
 #' @param trt .
 #' @param reps .
-#' @param col .
-#' @param seed .
 #' @param properties .
 #' @param degfree .
+#' @param seed .
 #' @param mapGraph .
+#' @param legend .
+#' @param col .
 #' @param plotList .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -225,11 +234,12 @@ CRD <- function(
     data,
     trt,
     reps = 4,
-    col = 2,
-    seed = 0,
     properties = TRUE,
     degfree = TRUE,
+    seed = 0,
     mapGraph = FALSE,
+    legend = FALSE,
+    col = 2,
     plotList = FALSE) {
 
     if ( ! requireNamespace('jmvcore'))
@@ -245,11 +255,12 @@ CRD <- function(
     options <- CRDOptions$new(
         trt = trt,
         reps = reps,
-        col = col,
-        seed = seed,
         properties = properties,
         degfree = degfree,
+        seed = seed,
         mapGraph = mapGraph,
+        legend = legend,
+        col = col,
         plotList = plotList)
 
     analysis <- CRDClass$new(

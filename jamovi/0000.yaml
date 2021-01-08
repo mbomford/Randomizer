@@ -1,20 +1,20 @@
 ---
 title: Randomize common experimental designs
 name: Randomization
-version: 0.3.1
+version: 0.3.9
 jms: '1.0'
 authors:
   - Michael Bomford
 maintainer: Michael Bomford <mike.bomford@kpu.ca>
-date: '2020-12-23'
+date: '2021-01-01'
 type: R
 description: >-
   Randomize balanced single factor or full factorial experiments using
   Completely Randomized, Randomized Complete Block, or Latin Square designs.
   Generate plot maps, plot lists, and design property tables. Restore a
-  particular randomization using its unique ID. Prepare for randomization by
-  making each factor name a column header in jamovi's spreadsheet, with levels
-  of that factor listed below.
+  particular randomization by seed. Prepare for randomization by making each
+  factor name a column header in jamovi's spreadsheet, with levels of that
+  factor listed below.
 analyses:
   - title: Completely Randomized Design
     name: CRD

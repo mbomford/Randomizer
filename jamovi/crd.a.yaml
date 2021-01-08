@@ -20,32 +20,37 @@ options:
       default: 4
       min: 0
 
+    - name: properties
+      title: Design properties
+      type: Bool
+      default: true
+ 
+    - name: degfree
+      title: Degrees of freedom
+      type: Bool
+      default: true  
+
+    - name: seed
+      title: Seed
+      type: Integer
+      default: 0
+      min: 0
+      
+    - name: mapGraph
+      title: Plot map
+      type: Bool
+      default: false
+      
+    - name: legend
+      title: Map legend
+      type: Bool
+      default: false
+      
     - name: col
       title: Columns
       type: Integer
       default: 2
       min: 1
-
-    - name: seed
-      title: Randomization ID
-      type: Integer
-      default: 0
-      min: 0
-
-    - name: properties
-      title: Design Properties
-      type: Bool
-      default: true
- 
-    - name: degfree
-      title: Degrees of Freedom
-      type: Bool
-      default: true  
-
-    - name: mapGraph
-      title: Plot Map
-      type: Bool
-      default: false
  
 #    - name: mapText
 #      title: Plot Map (Text)
@@ -53,7 +58,7 @@ options:
 #      default: false  
 
     - name: plotList
-      title: Plot List
+      title: Plot list
       type: Bool
       default: false
  

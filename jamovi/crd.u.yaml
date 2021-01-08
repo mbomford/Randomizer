@@ -2,7 +2,7 @@ title: Completely Randomized Design
 name: CRD
 jus: '3.0'
 stage: 0
-compilerMode: aggressive
+compilerMode: tame
 children:
   - type: VariableSupplier
     persistentItems: false
@@ -22,24 +22,42 @@ children:
         format: number
   - type: LayoutBox
     margin: large
-    children:
-      - type: TextBox
-        name: col
-        format: number
-  - type: LayoutBox
-    margin: large
-    children:
-      - type: TextBox
-        name: seed
-        format: number
-  - type: LayoutBox
-    margin: large
+    style: inline
+    stretchFactor: 1
     children:
       - type: CheckBox
         name: properties
+        stretchFactor: 1
       - type: CheckBox
         name: degfree
-      - type: CheckBox
-        name: mapGraph
-      - type: CheckBox
-        name: plotList
+        stretchFactor: 1
+  - type: CollapseBox
+    margin: large
+    collapsed: true
+    label: Design map
+    stretchFactor: 1
+    children:
+      - type: LayoutBox
+        margin: large
+        style: inline
+        stretchFactor: 1
+        children:
+          - type: CheckBox
+            name: mapGraph
+            stretchFactor: 1
+            children:
+              - type: TextBox
+                name: col
+                format: number
+              - type: CheckBox
+                name: legend
+                stretchFactor: 1
+          - type: CheckBox
+            name: plotList
+            stretchFactor: 1
+      - type: LayoutBox
+        margin: large
+        children:
+          - type: TextBox
+            name: seed
+            format: number
