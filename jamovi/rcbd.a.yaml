@@ -1,8 +1,8 @@
 ---
 name:  RCBD
 title: Randomized Complete Block Design
-menuGroup: Randomization
-version: '0.3.0'
+menuGroup: Randomizer
+version: '0.4.0'
 jas: '1.2'
 
 options:

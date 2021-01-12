@@ -1,11 +1,11 @@
-Package: Randomization
+Package: Randomizer
 Type: Package
 Title: Randomize common experimental designs
-Version: 0.2.4
+Version: 0.4.0
 Author: Michael Bomford
 Maintainer: Michael Bomford <mike.bomford@kpu.ca>
 Description: Randomize common experimental designs
-License: What license is it under?
+License: GNU GPL v.3
 Encoding: UTF-8
 LazyData: true
 Imports: jmvcore (>= 0.8.5), R6, ggplot2, ggfittext
