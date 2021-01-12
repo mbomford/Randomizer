@@ -17,7 +17,7 @@ RCBDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             plotList = FALSE, ...) {
 
             super$initialize(
-                package='Randomization',
+                package='Randomizer',
                 name='RCBD',
                 requiresData=TRUE,
                 ...)
@@ -186,9 +186,9 @@ RCBDBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = 'Randomization',
+                package = 'Randomizer',
                 name = 'RCBD',
-                version = c(0,3,0),
+                version = c(0,4,0),
                 options = options,
                 results = RCBDResults$new(options=options),
                 data = data,

@@ -1,8 +1,8 @@
 ---
 name:  LSD
 title: Latin Square Design
-menuGroup: Randomization
-version: '0.3.0'
+menuGroup: Randomizer
+version: '0.4.0'
 jas: '1.2'
 
 options:
@@ -49,11 +49,6 @@ options:
       title: Map legend
       type: Bool
       default: false
- 
- #   - name: mapText
- #     title: Plot Map (Text)
- #     type: Bool
- #     default: false  
 
     - name: plotList
       title: Plot list

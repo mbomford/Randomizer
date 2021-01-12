@@ -17,7 +17,7 @@ CRDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             plotList = FALSE, ...) {
 
             super$initialize(
-                package='Randomization',
+                package='Randomizer',
                 name='CRD',
                 requiresData=TRUE,
                 ...)
@@ -187,9 +187,9 @@ CRDBase <- if (requireNamespace('jmvcore')) R6::R6Class(
     public = list(
         initialize = function(options, data=NULL, datasetId="", analysisId="", revision=0) {
             super$initialize(
-                package = 'Randomization',
+                package = 'Randomizer',
                 name = 'CRD',
-                version = c(0,3,0),
+                version = c(0,4,0),
                 options = options,
                 results = CRDResults$new(options=options),
                 data = data,

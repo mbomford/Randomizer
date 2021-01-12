@@ -1,8 +1,8 @@
 ---
 name:  CRD
 title: Completely Randomized Design
-menuGroup: Randomization
-version: '0.3.0'
+menuGroup: Randomizer
+version: '0.4.0'
 jas: '1.2'
 
 options:
@@ -51,19 +51,10 @@ options:
       type: Integer
       default: 2
       min: 1
- 
-#    - name: mapText
-#      title: Plot Map (Text)
-#      type: Bool
-#      default: false  
 
     - name: plotList
       title: Plot list
       type: Bool
       default: false
- 
-#    - name: power
-#      title: Power Analysis
-#      type: Bool
-#      default: false
+
 ...

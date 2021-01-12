@@ -5,28 +5,28 @@ LSDClass <- if (requireNamespace('jmvcore')) R6::R6Class(
     "LSDClass",
     inherit = LSDBase,
     private = list(
-	.init = function() 
-		{
-			factors <- ncol(self$data)
-			FactorNames <- c(colnames(self$data))
-			interactions <- c()
-			if(ncol(self$data) > 1)
+    .init = function() 
+        {
+            factors <- ncol(self$data)
+            FactorNames <- c(colnames(self$data))
+            interactions <- c()
+            if(ncol(self$data) > 1)
             { 
                 if(ncol(self$data) == 2)
                  { 
                  interactions <- jmvcore::stringifyTerm(c(colnames(self$data)[1], colnames(self$data)[2]))
-				 } 
-				if(ncol(self$data) == 3)
-                 {				
-				 interactions <- c(jmvcore::stringifyTerm(c(colnames(self$data)[1], colnames(self$data)[2])), 
+                 } 
+                if(ncol(self$data) == 3)
+                 {              
+                 interactions <- c(jmvcore::stringifyTerm(c(colnames(self$data)[1], colnames(self$data)[2])), 
                      jmvcore::stringifyTerm(c(colnames(self$data)[1], colnames(self$data)[3])), 
                      jmvcore::stringifyTerm(c(colnames(self$data)[2], colnames(self$data)[3])),
                      jmvcore::stringifyTerm(c(colnames(self$data)[1], colnames(self$data)[2], colnames(self$data)[3])))
                  }
-				
-			}
-			FactorNames <- c("Rows", "Columns", FactorNames, interactions, "Residual", "Total")
-		    if(self$options$degfree==TRUE)
+                
+            }
+            FactorNames <- c("Rows", "Columns", FactorNames, interactions, "Residual", "Total")
+            if(self$options$degfree==TRUE)
                 {
                 for(row in 1:length(FactorNames))
                   {
@@ -36,12 +36,12 @@ LSDClass <- if (requireNamespace('jmvcore')) R6::R6Class(
                   }  
                 } else
                 {self$results$degfree$setVisible(visible=FALSE)}
-		},
+        },
         .run = function() {
 
        ready <- TRUE
        if (is.null(self$options$trt) || length(self$options$trt) <1 || length(self$options$trt) >3)
-	 ready <- FALSE
+     ready <- FALSE
 
        if (ready) 
        {
@@ -98,7 +98,7 @@ LSDClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             level <- c()
             x <- c(rep(1:treatNo, treatNo))
             y <- c(rep(1:treatNo, each=treatNo))
-			Block <- x
+            Block <- x
             for (row in 1:treatNo)
                 {for (column in 1:treatNo)
                    {level <- c(level, treatments[sq[row,column]])}}
@@ -124,9 +124,9 @@ LSDClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             FactorDF <- c(treatNo-1, treatNo-1, FactorDF, interactionDF)
 
             ResidualDF <- TotalDF - do.call(sum, as.list(FactorDF))
-			df <- c(FactorDF, ResidualDF, TotalDF)
-			
-			levels <- jmvcore::stringifyTerm(levels)
+            df <- c(FactorDF, ResidualDF, TotalDF)
+            
+            levels <- jmvcore::stringifyTerm(levels)
           
             if(self$options$properties==TRUE)
                {
@@ -180,56 +180,56 @@ LSDClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             plotData <- image$state
             if(self$options$arrange == 'separate')
               {
-			  if(self$options$legend == TRUE)
-				{
-				plot <- ggplot(plotData, aes(x=Block, y=y)) +
-					geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
-					ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
-					scale_y_reverse() +
-					ggtheme +
-					theme(legend.text=element_text(size=11), axis.title.x=element_blank(), axis.text.x=element_blank(),
+              if(self$options$legend == TRUE)
+                {
+                plot <- ggplot(plotData, aes(x=Block, y=y)) +
+                    geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
+                    ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
+                    scale_y_reverse() +
+                    ggtheme +
+                    theme(legend.text=element_text(size=11), axis.title.x=element_blank(), axis.text.x=element_blank(),
                       axis.ticks.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), 
-					  axis.ticks.y=element_blank(), axis.line=element_blank(), strip.background = element_rect(fill="grey")) + 
-					facet_wrap(Block~., scales="free", labeller = label_both) + 
-					labs(fill = "Treatments") 
-				} else
-				{
-				plot <- ggplot(plotData, aes(x=Block, y=y)) +
-					geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
-					ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
-					scale_y_reverse() +
-					ggtheme +
-					theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),
+                      axis.ticks.y=element_blank(), axis.line=element_blank(), strip.background = element_rect(fill="grey")) + 
+                    facet_wrap(Block~., scales="free", labeller = label_both) + 
+                    labs(fill = "Treatments") 
+                } else
+                {
+                plot <- ggplot(plotData, aes(x=Block, y=y)) +
+                    geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
+                    ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
+                    scale_y_reverse() +
+                    ggtheme +
+                    theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),
                       axis.ticks.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), 
-					  axis.ticks.y=element_blank(), axis.line=element_blank(), strip.background = element_rect(fill="grey")) + 
-					facet_wrap(Block~., scales="free", labeller = label_both) 
-				}
-				
+                      axis.ticks.y=element_blank(), axis.line=element_blank(), strip.background = element_rect(fill="grey")) + 
+                    facet_wrap(Block~., scales="free", labeller = label_both) 
+                }
+                
               } else
               {
-			  if(self$options$legend == TRUE)
-				{
-				plot <- ggplot(plotData, aes(x=Block, y=y)) +
-					geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
-					ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
-					scale_y_reverse() +
-					ggtheme +
-					theme(legend.text=element_text(size=11), axis.title.x=element_blank(), axis.text.x=element_blank(),
+              if(self$options$legend == TRUE)
+                {
+                plot <- ggplot(plotData, aes(x=Block, y=y)) +
+                    geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
+                    ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
+                    scale_y_reverse() +
+                    ggtheme +
+                    theme(legend.text=element_text(size=11), axis.title.x=element_blank(), axis.text.x=element_blank(),
                       axis.ticks.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), 
-						axis.ticks.y=element_blank(), axis.line=element_blank()) +
-						labs(fill = "Treatments") 
-				} else
-				{
-				plot <- ggplot(plotData, aes(x=Block, y=y)) +
-					geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
-					ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
-					scale_y_reverse() +
-					ggtheme +
-					theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),
+                        axis.ticks.y=element_blank(), axis.line=element_blank()) +
+                        labs(fill = "Treatments") 
+                } else
+                {
+                plot <- ggplot(plotData, aes(x=Block, y=y)) +
+                    geom_tile(aes(x=Block, y=y, height=0.8, width=0.8, fill=level)) +
+                    ggfittext::geom_fit_text(aes(label=level), reflow=TRUE) +
+                    scale_y_reverse() +
+                    ggtheme +
+                    theme(legend.position="none", axis.title.x=element_blank(), axis.text.x=element_blank(),
                       axis.ticks.x=element_blank(), axis.title.y=element_blank(), axis.text.y=element_blank(), 
-						axis.ticks.y=element_blank(), axis.line=element_blank())
-				}
-			  }	
+                        axis.ticks.y=element_blank(), axis.line=element_blank())
+                }
+              } 
             theme()  
             print(plot)
             TRUE
