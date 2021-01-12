@@ -13,6 +13,7 @@ RCBDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             properties = TRUE,
             degfree = TRUE,
             mapGraph = FALSE,
+            legend = FALSE,
             plotList = FALSE, ...) {
 
             super$initialize(
@@ -57,6 +58,10 @@ RCBDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 "mapGraph",
                 mapGraph,
                 default=FALSE)
+            private$..legend <- jmvcore::OptionBool$new(
+                "legend",
+                legend,
+                default=FALSE)
             private$..plotList <- jmvcore::OptionBool$new(
                 "plotList",
                 plotList,
@@ -69,6 +74,7 @@ RCBDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$.addOption(private$..properties)
             self$.addOption(private$..degfree)
             self$.addOption(private$..mapGraph)
+            self$.addOption(private$..legend)
             self$.addOption(private$..plotList)
         }),
     active = list(
@@ -79,6 +85,7 @@ RCBDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         properties = function() private$..properties$value,
         degfree = function() private$..degfree$value,
         mapGraph = function() private$..mapGraph$value,
+        legend = function() private$..legend$value,
         plotList = function() private$..plotList$value),
     private = list(
         ..trt = NA,
@@ -88,6 +95,7 @@ RCBDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         ..properties = NA,
         ..degfree = NA,
         ..mapGraph = NA,
+        ..legend = NA,
         ..plotList = NA)
 )
 
@@ -127,7 +135,7 @@ RCBDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                         `name`="Plots", 
                         `type`="integer"),
                     list(
-                        `name`="ID", 
+                        `name`="Seed", 
                         `type`="integer"))))
             self$add(jmvcore::Table$new(
                 options=options,
@@ -139,7 +147,7 @@ RCBDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                         `name`="Source", 
                         `type`="text"),
                     list(
-                        `name`="DF", 
+                        `name`="df", 
                         `type`="integer"))))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -152,7 +160,7 @@ RCBDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$add(jmvcore::Table$new(
                 options=options,
                 name="plots",
-                title="Plot list",
+                title="Plot List",
                 visible=FALSE,
                 rows=0,
                 columns=list(
@@ -203,6 +211,7 @@ RCBDBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param properties .
 #' @param degfree .
 #' @param mapGraph .
+#' @param legend .
 #' @param plotList .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -228,6 +237,7 @@ RCBD <- function(
     properties = TRUE,
     degfree = TRUE,
     mapGraph = FALSE,
+    legend = FALSE,
     plotList = FALSE) {
 
     if ( ! requireNamespace('jmvcore'))
@@ -248,6 +258,7 @@ RCBD <- function(
         properties = properties,
         degfree = degfree,
         mapGraph = mapGraph,
+        legend = legend,
         plotList = plotList)
 
     analysis <- RCBDClass$new(

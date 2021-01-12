@@ -20,7 +20,7 @@ items:
           type: integer
         - name: Plots
           type: integer
-        - name: ID
+        - name: Seed
           type: integer
 
     - name:  degfree
@@ -31,7 +31,7 @@ items:
       columns:
         - name: Source
           type: text
-        - name: DF
+        - name: df
           type: integer
 
     - name: plot
@@ -41,7 +41,7 @@ items:
       height: 500
       renderFun: .plot
       visible: false
-
+      
 #    - name:  text
 #      title: Plot map (text)
 #      type:  Preformatted
@@ -57,7 +57,7 @@ items:
 #        - type: text
 
     - name:  plots
-      title: Plot list
+      title: Plot List
       type:  Table
       visible: false
       rows: 0

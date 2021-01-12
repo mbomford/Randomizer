@@ -12,6 +12,7 @@ LSDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             properties = TRUE,
             degfree = TRUE,
             mapGraph = FALSE,
+            legend = FALSE,
             plotList = FALSE, ...) {
 
             super$initialize(
@@ -50,6 +51,10 @@ LSDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
                 "mapGraph",
                 mapGraph,
                 default=FALSE)
+            private$..legend <- jmvcore::OptionBool$new(
+                "legend",
+                legend,
+                default=FALSE)
             private$..plotList <- jmvcore::OptionBool$new(
                 "plotList",
                 plotList,
@@ -61,6 +66,7 @@ LSDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$.addOption(private$..properties)
             self$.addOption(private$..degfree)
             self$.addOption(private$..mapGraph)
+            self$.addOption(private$..legend)
             self$.addOption(private$..plotList)
         }),
     active = list(
@@ -70,6 +76,7 @@ LSDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         properties = function() private$..properties$value,
         degfree = function() private$..degfree$value,
         mapGraph = function() private$..mapGraph$value,
+        legend = function() private$..legend$value,
         plotList = function() private$..plotList$value),
     private = list(
         ..trt = NA,
@@ -78,6 +85,7 @@ LSDOptions <- if (requireNamespace('jmvcore')) R6::R6Class(
         ..properties = NA,
         ..degfree = NA,
         ..mapGraph = NA,
+        ..legend = NA,
         ..plotList = NA)
 )
 
@@ -117,7 +125,7 @@ LSDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                         `name`="Plots", 
                         `type`="integer"),
                     list(
-                        `name`="ID", 
+                        `name`="Seed", 
                         `type`="integer"))))
             self$add(jmvcore::Table$new(
                 options=options,
@@ -129,7 +137,7 @@ LSDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
                         `name`="Source", 
                         `type`="text"),
                     list(
-                        `name`="DF", 
+                        `name`="df", 
                         `type`="integer"))))
             self$add(jmvcore::Image$new(
                 options=options,
@@ -142,7 +150,7 @@ LSDResults <- if (requireNamespace('jmvcore')) R6::R6Class(
             self$add(jmvcore::Table$new(
                 options=options,
                 name="plots",
-                title="Plot list",
+                title="Plot List",
                 visible=FALSE,
                 rows=0,
                 columns=list(
@@ -189,6 +197,7 @@ LSDBase <- if (requireNamespace('jmvcore')) R6::R6Class(
 #' @param properties .
 #' @param degfree .
 #' @param mapGraph .
+#' @param legend .
 #' @param plotList .
 #' @return A results object containing:
 #' \tabular{llllll}{
@@ -213,6 +222,7 @@ LSD <- function(
     properties = TRUE,
     degfree = TRUE,
     mapGraph = FALSE,
+    legend = FALSE,
     plotList = FALSE) {
 
     if ( ! requireNamespace('jmvcore'))
@@ -232,6 +242,7 @@ LSD <- function(
         properties = properties,
         degfree = degfree,
         mapGraph = mapGraph,
+        legend = legend,
         plotList = plotList)
 
     analysis <- LSDClass$new(
